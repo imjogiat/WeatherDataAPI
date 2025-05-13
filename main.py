@@ -9,9 +9,13 @@ app = Flask(__name__)
 #the station number, then the API URL will display the station, date and 
 #temperature
 
+variable = "abc"
+station_data = pd.read_csv("data_small\stations.txt", skiprows=17)
+station_data = station_data[["STAID"]["STANAME                                 "]]
+
 @app.route("/")
 def home():
-    return render_template("home.html")
+    return render_template("home.html", data=station_data.to_html())
 
 #This URL will display the required API information as JSON data. 
 #Therefore, for a requested station id, store the csv file data in DataFrame 
